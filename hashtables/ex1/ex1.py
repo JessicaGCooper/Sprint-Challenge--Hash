@@ -8,14 +8,14 @@ def get_indices_of_item_weights(weights, length, limit):
         if weights[i] not in w:
             w[weights[i]] = i
         else:
-            w[weights[i]] = (w[weights[i]], i)
+            w[weights[i]] = (i, w[weights[i]])
 
     for weight, index in w.items():
         paired_weight = limit - weight
         if paired_weight in w:
-            if paired_weight > weight:
+            if w[paired_weight] > index:
                 return (w[paired_weight], index)
-            elif weight > paired_weight:
+            elif index > w[paired_weight]:
                 return (index, w[paired_weight])
             elif weight == paired_weight:
                 return index
