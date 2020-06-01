@@ -1,8 +1,24 @@
+import itertools
+
 def intersection(arrays):
 
-    """
-    YOUR CODE HERE
-    """
+    nums = list(itertools.chain.from_iterable(arrays))
+
+    index = dict()
+    for i in range(len(nums)):
+        if nums[i] not in index:
+            index[nums[i]] = []
+
+    for array in range(len(arrays)):
+        for num in arrays[array]:
+            if num in index:
+                index[num].append(array)
+
+    result = []
+
+    for number in index:
+        if len(index[number]) == len(arrays):
+            result.append(number)
 
     return result
 
